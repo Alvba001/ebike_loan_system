@@ -1,0 +1,197 @@
+/* ======================
+   BUTTONS
+   ====================== */
+.btn{
+    display: inline-block;
+    padding: 10px 16px;
+    border-radius: 8px;
+    background: var(--primary);
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.btn:hover{
+    background: #1e4fd6;
+}
+
+.btn.ghost{
+    background: transparent;
+    border: 1px solid #d1d5db;
+    color: var(--primary);
+}
+
+.btn.ghost:hover{
+    background: rgba(37,99,235,0.08);
+}
+
+.btn.warn{
+    background: var(--accent);
+    color: #111827;
+}
+
+.btn.warn:hover{
+    background: #c9a227;
+}
+@media (max-width: 768px) {
+  .btn {
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+  }
+
+  .btn-table {
+    padding: 10px 12px;
+  }
+}
+
+
+/* ======================
+   CARDS
+   ====================== */
+.card{
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: var(--card-shadow);
+    color: var(--text-main);
+}
+
+.card h4{
+    margin: 0 0 10px;
+    color: #111827;
+}
+
+/* Dark card support */
+.dark-section .card{
+    background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+    color: var(--text-light);
+}
+
+.dark-section .card h4{
+    color: #f9fafb;
+}
+
+/* ======================
+   TABLES
+   ====================== */
+.table{
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.table th,
+.table td{
+    padding: 12px 10px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+}
+
+.table th{
+    color: #6b7280;
+    font-weight: 600;
+    background: #f9fafb;
+}
+
+.table tr:hover{
+    background: #f3f4f6;
+}
+
+/* Dark table support */
+.dark-section .table th,
+.dark-section .table td{
+    border-color: rgba(255,255,255,0.08);
+}
+
+.dark-section .table th{
+    background: transparent;
+    color: var(--muted);
+}
+
+.dark-section .table tr:hover{
+    background: rgba(255,255,255,0.05);
+}
+
+.table-card,
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  min-width: 600px;
+}
+
+
+/* ======================
+   STATUS LABELS
+   ====================== */
+.label{
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 12px;
+    display: inline-block;
+}
+
+.label.pending{
+    background: rgba(245,158,11,0.15);
+    color: #92400e;
+}
+
+.label.approved{
+    background: rgba(22,163,74,0.15);
+    color: #166534;
+}
+
+.label.rejected{
+    background: rgba(220,38,38,0.15);
+    color: #991b1b;
+}
+
+/* ======================
+   FORMS
+   ====================== */
+.input,
+textarea,
+select{
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    color: var(--text-main);
+    font-size: 14px;
+}
+
+.input::placeholder,
+textarea::placeholder{
+    color: #9ca3af;
+}
+
+.input:focus,
+textarea:focus,
+select:focus{
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(37,99,235,0.15);
+}
+
+/* Dark form support */
+.dark-section .input,
+.dark-section textarea,
+.dark-section select{
+    background: transparent;
+    border-color: rgba(255,255,255,0.15);
+    color: var(--text-light);
+}
+
+.dark-section .input::placeholder,
+.dark-section textarea::placeholder{
+    color: rgba(229,231,235,0.5);
+}
