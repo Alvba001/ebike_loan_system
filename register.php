@@ -4,22 +4,31 @@ include 'includes/db_connect.php';
 if (isset($_POST['register'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
-    $password = $_POST['password']; // plain text as you requested
+    $password = $_POST['password']; // Keeping plain text as requested
 
-    // Check if email already exists
-    $checkEmail = "SELECT * FROM users WHERE email='$email'";
-    $result = $conn->query($checkEmail);
+    // 1. Check if email already exists (Securely)
+    $stmt = $conn->prepare("SELECT email FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $stmt->store_result();
 
-    if ($result->num_rows > 0) {
+    if ($stmt->num_rows > 0) {
         echo "<script>alert('This email is already registered! Please log in instead.'); window.location='login.php';</script>";
     } else {
-        $sql = "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$password')";
-        if ($conn->query($sql) === TRUE) {
+        $stmt->close(); // Close previous statement
+
+        // 2. Insert new user (Securely)
+        // This fixes your syntax error permanently because it separates code from data
+        $stmt = $conn->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $name, $email, $password);
+
+        if ($stmt->execute()) {
             echo "<script>alert('Registration successful! You can now log in.'); window.location='login.php';</script>";
         } else {
             echo "<script>alert('Error while registering. Please try again.');</script>";
         }
     }
+    $stmt->close();
 }
 ?>
 <!DOCTYPE html>

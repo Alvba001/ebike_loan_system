@@ -27,7 +27,7 @@ $total_loans_range = $conn->query("
 $total_repayments_range = $conn->query("
     SELECT IFNULL(SUM(amount_paid),0) AS s
     FROM repayments
-    WHERE DATE(payment_date) BETWEEN '$from_safe' AND '$to_safe'
+    WHERE DATE(date_paid) BETWEEN '$from_safe' AND '$to_safe'
 ")->fetch_assoc();
 
 // monthly breakdown (grouped months in range)
@@ -46,8 +46,8 @@ $repayment_sql = "
     FROM repayments r
     JOIN loan_applications l ON r.loan_id = l.loan_id
     JOIN users u ON l.user_id = u.user_id
-    WHERE DATE(r.payment_date) BETWEEN '$from_safe' AND '$to_safe'
-    ORDER BY r.payment_date DESC
+    WHERE DATE(r.date_paid) BETWEEN '$from_safe' AND '$to_safe'
+    ORDER BY r.date_paid DESC
 ";
 $repayment_res = $conn->query($repayment_sql);
 
@@ -162,7 +162,7 @@ if (isset($_GET['export']) && $_GET['export'] === 'csv') {
                         <td>{$r['loan_id']}</td>
                         <td>".htmlspecialchars($r['bike_model'])."</td>
                         <td>₦".number_format($r['amount_paid'],2)."</td>
-                        <td>{$r['payment_date']}</td>
+                        <td>{$r['date_paid']}</td>
                       </tr>";
             }
         } else {

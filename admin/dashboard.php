@@ -49,18 +49,7 @@ $total_repayments = $conn->query("
 
 $outstanding_balance = floatval($total_disbursed) - floatval($total_repayments);
 
-// Bikes
-$total_bikes = $conn->query("
-    SELECT COUNT(*) AS c FROM bikes
-")->fetch_assoc()['c'];
-
-$assigned_bikes = $conn->query("
-    SELECT COUNT(*) AS c FROM bikes WHERE status='assigned'
-")->fetch_assoc()['c'];
-
-$available_bikes = $conn->query("
-    SELECT COUNT(*) AS c FROM bikes WHERE status='available'
-")->fetch_assoc()['c'];
+// Bikes section removed
 
 // Defaulters
 $today = date('Y-m-d');
@@ -107,7 +96,7 @@ $defaulters = $conn->query("
         <div class="actions">
             <a href="check_reminders.php" class="btn">Run Reminder Check</a>
             <a href="reports.php" class="btn" style="background:#2b8aef">Open Reports</a>
-            <a href="add_bike.php" class="btn" style="background:#6c757d">Add Bike</a>
+            <a href="reports.php" class="btn" style="background:#2b8aef">Open Reports</a>
         </div>
     </div>
 
@@ -161,19 +150,7 @@ $defaulters = $conn->query("
             <div class="small">Remaining balance</div>
         </div>
 
-        <div class="card">
-            <h4>Total Bikes</h4>
-            <div class="stat"><?php echo number_format($total_bikes); ?></div>
-            <div class="small">Inventory</div>
-        </div>
 
-        <div class="card">
-            <h4>Assigned / Available</h4>
-            <div class="stat">
-                <?php echo number_format($assigned_bikes); ?> / <?php echo number_format($available_bikes); ?>
-            </div>
-            <div class="small">Bike status</div>
-        </div>
 
         <div class="card">
             <h4>Defaulters</h4>

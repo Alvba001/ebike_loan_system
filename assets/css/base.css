@@ -1,24 +1,32 @@
-:root{
+:root {
     /* Core background colors */
-    --bg: #0f172a;            /* Deep navy background */
-    --bg-soft: #f8fafc;       /* Light background fallback */
-    --panel: #111827;         /* Dark panels */
+    --bg: #0f172a;
+    /* Deep navy background */
+    --bg-soft: #f8fafc;
+    /* Light background fallback */
+    --panel: #111827;
+    /* Dark panels */
 
     /* Text colors */
-    --text-main: #1f2937;     /* Main text on light surfaces */
-    --text-light: #e5e7eb;    /* Text on dark surfaces */
-    --muted: #9ca3af;         /* Muted text */
+    --text-main: #1f2937;
+    /* Main text on light surfaces */
+    --text-light: #e5e7eb;
+    /* Text on dark surfaces */
+    --muted: #9ca3af;
+    /* Muted text */
 
     /* Brand & accents */
-    --primary: #2563eb;       /* Professional blue */
-    --accent: #d4af37;        /* Gold accent */
+    --primary: #2563eb;
+    /* Professional blue */
+    --accent: #d4af37;
+    /* Gold accent */
     --success: #16a34a;
     --warning: #f59e0b;
     --danger: #dc2626;
 
     /* UI helpers */
-    --glass: rgba(255,255,255,0.04);
-    --card-shadow: 0 8px 24px rgba(2,6,23,0.55);
+    --glass: rgba(255, 255, 255, 0.04);
+    --card-shadow: 0 8px 24px rgba(2, 6, 23, 0.55);
     --radius: 10px;
     --max-width: 1100px;
 }
@@ -26,11 +34,12 @@
 /* ======================
    GLOBAL RESET
    ====================== */
-html, body{
-    height:100%;
-    margin:0;
+html,
+body {
+    height: 100%;
+    margin: 0;
     font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
-    background: linear-gradient(180deg, var(--bg) 0%, #020617 100%);
+    background: white !important;
     color: var(--text-light);
     -webkit-font-smoothing: antialiased;
 }
@@ -38,18 +47,19 @@ html, body{
 /* ======================
    LINKS
    ====================== */
-a{
+a {
     color: var(--primary);
     text-decoration: none;
 }
-a:hover{
+
+a:hover {
     text-decoration: underline;
 }
 
 /* ======================
    CONTAINER
    ====================== */
-.container{
+.container {
     width: calc(100% - 40px);
     max-width: var(--max-width);
     margin: 40px auto;
@@ -65,7 +75,9 @@ a:hover{
 /* ======================
    HEADINGS
    ====================== */
-h1, h2, h3{
+h1,
+h2,
+h3 {
     margin: 0 0 12px;
     color: #111827;
     font-weight: 600;
@@ -75,7 +87,7 @@ h1, h2, h3{
    TEXT HELPERS
    ====================== */
 small,
-.text-muted{
+.text-muted {
     color: var(--muted);
     font-size: 13px;
 }
@@ -83,19 +95,24 @@ small,
 /* ======================
    UTILITY CLASSES
    ====================== */
-.row{
+.row {
     display: flex;
     gap: 18px;
     align-items: center;
 }
 
-.mt-10{ margin-top: 10px; }
-.mb-10{ margin-bottom: 10px; }
+.mt-10 {
+    margin-top: 10px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
 
 /* ======================
    DARK SECTIONS SUPPORT
    ====================== */
-.dark-section{
+.dark-section {
     background: var(--panel);
     color: var(--text-light);
     padding: 22px;
@@ -104,7 +121,7 @@ small,
 
 .dark-section h1,
 .dark-section h2,
-.dark-section h3{
+.dark-section h3 {
     color: #f9fafb;
 }
 
@@ -113,19 +130,27 @@ small,
    =========================== */
 @media (max-width: 768px) {
 
-  .container {
-    width: calc(100% - 20px);
-    margin: 20px auto;
-    padding: 16px;
-  }
+    .container {
+        width: calc(100% - 20px);
+        margin: 20px auto;
+        padding: 16px;
+    }
 
-  h1 { font-size: 22px; }
-  h2 { font-size: 20px; }
-  h3 { font-size: 18px; }
+    h1 {
+        font-size: 22px;
+    }
 
-  .row {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+    h2 {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    .row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 
 }

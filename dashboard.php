@@ -25,53 +25,66 @@ $loan_id = $loan ? intval($loan['loan_id']) : null;
 $paid = 0;
 $remaining = 0;
 $percent = 0;
-if ($loan_id) {
-    $payRow = $conn->query("SELECT IFNULL(SUM(amount_paid),0) AS total FROM repayments WHERE loan_id = '$loan_id'")->fetch_assoc();
-    $paid = floatval($payRow['total']);
-    $remaining = floatval($loan['amount']) - $paid;
-    $percent = $loan['amount'] > 0 ? ($paid / $loan['amount']) * 100 : 0;
-    if ($percent < 0) $percent = 0;
-    if ($percent > 100) $percent = 100;
+if ($loan) {
+    if (isset($loan['loan_id'])) {
+        $loan_id = $loan['loan_id'];
+        $payRow = $conn->query("SELECT IFNULL(SUM(amount_due),0) AS total FROM repayment_schedule WHERE loan_id = '$loan_id' AND status='paid'")->fetch_assoc();
+        $paid = floatval($payRow['total']);
+        $remaining = floatval($loan['amount']) - $paid;
+        $percent = $loan['amount'] > 0 ? ($paid / $loan['amount']) * 100 : 0;
+        if ($percent < 0) $percent = 0;
+        if ($percent > 100) $percent = 100;
+        
+        // --- Redirect if Fully Paid (Completed) ---
+        // Treat as completed if balance is 0 or less
+        if ($remaining <= 0) {
+            if (!isset($_GET['new_loan'])) {
+                header("Location: application_status.php");
+                exit();
+            }
+            // If new_loan is set, we fall through. 
+            // We need to ensure logic below treats it as "No Active Loan" effectively for UI purposes
+            // But strict status might still be 'approved' in DB. 
+            // We'll handle visual logic later in the file.
+        }
+    }
 }
 
-// --- Fetch assigned bike if any ---
-$assign = null;
-if ($loan_id) {
-    $assign = $conn->query("
-        SELECT b.serial_number, b.model 
-        FROM bike_assignments a
-        JOIN bikes b ON a.bike_id = b.bike_id
-        WHERE a.loan_id = '$loan_id'
-        ORDER BY a.assigned_date DESC
-        LIMIT 1
-    ")->fetch_assoc();
+// --- Enforce Status Stickiness (Only if NOT fully paid or if we want to force status page for pending) ---
+if ($loan) {
+    // If pending, always status page
+    if ($loan['status'] === 'pending') {
+        header("Location: application_status.php");
+        exit();
+    } 
+    // If approved and NOT fully paid (remaining > 0), go to approved_loan.php
+    elseif ($loan['status'] === 'approved' && $remaining > 0) {
+        header("Location: approved_loan.php");
+        exit();
+    }
 }
+
+// Bike assignment logic removed
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Borrower Dashboard</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <style>
-        .header-row { display:flex; justify-content:space-between; align-items:center; gap:10px; }
-        .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; margin-top:18px; }
-        .btn { display:inline-block; margin-top:10px; padding:8px 14px; background:#004aad; color:#fff; border-radius:8px; text-decoration:none; }
-        .info-box { background:#f5f8ff; padding:14px; border-left:4px solid #004aad; border-radius:8px; margin-top:20px; }
-        .timeline { display:flex; gap:8px; justify-content:space-between; margin-top:18px; }
-        .step { flex:1; padding:8px; text-align:center; border-bottom:4px solid #f0d14bff; color:#777; font-weight:600; }
-        .step.active { color:#004aad; border-color:#004aad; }
-        .progress-box { background:#fbfdff; padding:14px; border-radius:10px; margin-top:14px; }
-        .progress-bar { width:100%; background:#e9ecef; height:16px; border-radius:8px; overflow:hidden; margin:10px 0; }
-        .progress-bar .fill { height:16px; background:#004aad; width:0%; transition:width .6s; }
-    </style>
-</head>
-<body>
+<!-- Page Specific Styles -->
+<style>
+    .header-row { display:flex; justify-content:space-between; align-items:center; gap:10px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; margin-top:18px; }
+    .btn { display:inline-block; margin-top:10px; padding:8px 14px; background:#004aad; color:#fff; border-radius:8px; text-decoration:none; }
+    .info-box { background:#f5f8ff; padding:14px; border-left:4px solid #004aad; border-radius:8px; margin-top:20px; }
+    .timeline { display:flex; gap:8px; justify-content:space-between; margin-top:18px; }
+    .step { flex:1; padding:8px; text-align:center; border-bottom:4px solid #f0d14bff; color:#777; font-weight:600; }
+    .step.active { color:#004aad; border-color:#004aad; }
+    .progress-box { background:#fbfdff; padding:14px; border-radius:10px; margin-top:14px; }
+    .progress-bar { width:100%; background:#e9ecef; height:16px; border-radius:8px; overflow:hidden; margin:10px 0; }
+    .progress-bar .fill { height:16px; background:#004aad; width:0%; transition:width .6s; }
+</style>
 
 <?php
-    // Determine if user has an active loan (not completed and not rejected)
-    $hasActiveLoan = $loan && !in_array($loan['status'], ['completed', 'rejected']);
+    // Determine if user has an active loan (not completed/rejected AND not fully paid)
+    // If remaining <= 0, we consider it inactive for the purpose of "Start New Loan" UI
+    $hasActiveLoan = $loan && !in_array($loan['status'], ['completed', 'rejected']) && $remaining > 0;
 ?>
 
 <div class="container-fluid" style="max-width: 1400px; margin: 0 auto; padding: 20px;">
@@ -113,7 +126,7 @@ if ($loan_id) {
                         <p>Experience the future of commuting with our premium electric bikes. Efficient, eco-friendly, and stylish.</p>
                     </div>
 
-                    <a href="apply_loan.php" class="btn-cta">Apply for Loan</a>
+                    <a href="apply_loan.php" id="applyBtn" class="btn-cta">Apply for Loan</a>
                 </div>
             </div>
         </div>
@@ -129,7 +142,7 @@ if ($loan_id) {
                 box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             }
             .split-left {
-                flex: 1;
+                flex: 1; /* 25% */
                 background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
                 display: flex;
                 flex-direction: column;
@@ -139,11 +152,50 @@ if ($loan_id) {
                 position: relative;
             }
             .split-right {
-                flex: 1;
+                flex: 3; /* 75% */
                 padding: 60px;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
+            }
+
+            /* ... existing styles ... */
+            
+            .btn-cta {
+                display: inline-block;
+                background: #004aad;
+                color: #fff;
+                font-size: 1.2rem;
+                padding: 18px 40px;
+                border-radius: 50px;
+                text-decoration: none;
+                font-weight: 600;
+                transition: all 0.3s ease;
+                box-shadow: 0 10px 20px rgba(0,74,173,0.3);
+                border: none;
+                margin-bottom: 15px;
+                text-align: center;
+            }
+            .btn-cta:hover {
+                background: #003380;
+                transform: translateY(-2px);
+                box-shadow: 0 15px 30px rgba(0,74,173,0.4);
+            }
+            
+            .btn-secondary-gray {
+                display: inline-block;
+                background: #e2e8f0;
+                color: #475569;
+                font-size: 1.1rem;
+                padding: 16px 36px;
+                border-radius: 50px;
+                text-decoration: none;
+                font-weight: 600;
+                transition: all 0.3s ease;
+            }
+            .btn-secondary-gray:hover {
+                background: #cbd5e1;
+                color: #1e293b;
             }
 
             /* Left Side Styles */
@@ -293,9 +345,9 @@ if ($loan_id) {
 
         <script>
             const bikes = [
-                { id: 1, name: "EV1 Bike", price: "₦900,000", image: "assets/img/ev1.png" },
-                { id: 2, name: "EV2 Bike", price: "₦1,200,000", image: "assets/img/ev2.png" },
-                { id: 3, name: "EV3 Bike", price: "₦1,500,000", image: "assets/img/ev3.png" }
+                { id: 1, name: "EV1 Basic", price: "200000", image: "assets/img/ev1.png", displayPrice: "₦200,000" },
+                { id: 2, name: "EV2 Standard", price: "300000", image: "assets/img/ev2.png", displayPrice: "₦300,000" },
+                { id: 3, name: "EV3 Premium", price: "450000", image: "assets/img/ev3.png", displayPrice: "₦450,000" }
             ];
 
             let currentIndex = 0;
@@ -306,6 +358,7 @@ if ($loan_id) {
                 const title = document.getElementById('bikeTitle');
                 const price = document.getElementById('bikePrice');
                 const thumbs = document.querySelectorAll('.thumb');
+                const applyBtn = document.getElementById('applyBtn');
 
                 // Animate info changes
                 img.style.opacity = 0;
@@ -315,7 +368,12 @@ if ($loan_id) {
                     img.style.opacity = 1;
                     
                     title.textContent = bike.name;
-                    price.textContent = bike.price;
+                    price.textContent = bike.displayPrice;
+
+                    // Update Apply Button Link with Query Params
+                    if(applyBtn) {
+                        applyBtn.href = `apply_loan.php?model=${encodeURIComponent(bike.name)}&amount=${bike.price}&image=${encodeURIComponent(bike.image)}`;
+                    }
                 }, 200);
 
                 // Update Thumbs
@@ -342,6 +400,11 @@ if ($loan_id) {
                 currentIndex = index;
                 updateDisplay();
             }
+            
+            // Initialize button state
+            document.addEventListener("DOMContentLoaded", () => { 
+                updateDisplay();
+            });
         </script>
 
     <?php else: ?>
@@ -383,12 +446,7 @@ if ($loan_id) {
             </div>
         </div>
     
-        <!-- Assigned Bike -->
-        <?php if ($assign) : ?>
-            <div class="info-box">
-                <p><strong>Assigned Bike:</strong> <?php echo htmlspecialchars($assign['model']); ?> (<?php echo htmlspecialchars($assign['serial_number']); ?>)</p>
-            </div>
-        <?php endif; ?>
+
     
         <!-- Loan Summary + Timeline -->
         <?php if ($loan) : ?>
@@ -403,7 +461,7 @@ if ($loan_id) {
                 <div class="step <?php echo ($loan ? 'active' : ''); ?>">Applied</div>
                 <div class="step <?php echo ($loan['status'] === 'pending' ? 'active' : ''); ?>">Under Review</div>
                 <div class="step <?php echo ($loan['status'] === 'approved' ? 'active' : ''); ?>">Approved</div>
-                <div class="step <?php echo ($assign ? 'active' : ''); ?>">Bike Assigned</div>
+
                 <div class="step <?php echo ($loan['status'] === 'approved' ? 'active' : ''); ?>">Repayment</div>
     
                 <div class="step <?php echo ($loan && $remaining <= 0 ? 'active' : ''); ?>">Completed</div>

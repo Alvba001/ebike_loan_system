@@ -32,7 +32,7 @@ $result = $conn->query("
     SELECT *
     FROM repayments
     WHERE loan_id='$loan_id'
-    ORDER BY payment_date ASC
+    ORDER BY date_paid ASC
 ");
 
 /* ================= CALCULATE TOTAL PAID ================= */
@@ -127,7 +127,7 @@ $remaining  = max(0, $loan_amount - $total_paid);
                 <tr>
                     <th>#</th>
                     <th>Amount Paid (₦)</th>
-                    <th>Payment Date</th>
+                    <th>Date Paid</th>
                     <th>Balance After Payment (₦)</th>
                 </tr>
             </thead>
@@ -146,7 +146,7 @@ $remaining  = max(0, $loan_amount - $total_paid);
                         <tr>
                             <td>{$count}</td>
                             <td class='amount'>₦" . number_format($row['amount_paid'],2) . "</td>
-                            <td>{$row['payment_date']}</td>
+                            <td>{$row['date_paid']}</td>
                             <td>₦" . number_format(max(0,$balance),2) . "</td>
                         </tr>
                     ";

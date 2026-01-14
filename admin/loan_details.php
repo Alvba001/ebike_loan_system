@@ -146,23 +146,6 @@ if (!$loan) {
             </span>
         </div>
 
-        <div class="row">
-            <span class="label">Guarantor Document:</span>
-            <span class="value">
-                <?php if (!empty($loan['guarantor_doc'])) { ?>
-                    <a class="doc-link" href="../<?= $loan['guarantor_doc'] ?>" target="_blank">View Guarantor Doc</a>
-                <?php } else { echo "<span style='color:red'>Not uploaded</span>"; } ?>
-            </span>
-        </div>
-
-        <div class="row">
-            <span class="label">Supporting Document:</span>
-            <span class="value">
-                <?php if (!empty($loan['support_doc'])) { ?>
-                    <a class="doc-link" href="../<?= $loan['support_doc'] ?>" target="_blank">View Supporting Doc</a>
-                <?php } else { echo "<span style='color:red'>No file provided</span>"; } ?>
-            </span>
-        </div>
 
         <hr>
 
@@ -175,7 +158,6 @@ if (!$loan) {
 
         <?php if ($loan['status'] === 'pending') { ?>
             <a href="approve_loan.php?id=<?= $loan_id ?>" class="btn-approve">Approve Loan</a>
-            <a href="assign_bike.php?loan_id=<?= $loan_id ?>" class="btn-assign">Assign Bike</a>
             <a href="reject_loan.php?id=<?= $loan_id ?>" class="btn-reject">Reject Loan</a>
         <?php } else { ?>
             <p style="color:green; font-weight:bold;">This loan has already been processed.</p>

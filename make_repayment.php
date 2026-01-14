@@ -63,14 +63,14 @@ if (isset($_POST['pay'])) {
         try {
             // Insert repayment
             $conn->query("
-                INSERT INTO repayments (loan_id, amount_paid, payment_date)
+                INSERT INTO repayments (loan_id, amount_paid, date_paid)
                 VALUES ('$loan_id', '$amount_paid', CURDATE())
             ");
 
             // Mark schedule as PAID
             $conn->query("
                 UPDATE repayment_schedule
-                SET status='paid', date_paid=CURDATE()
+                SET status='paid', datepaid=CURDATE()
                 WHERE schedule_id='$schedule_id' AND status='pending'
             ");
 

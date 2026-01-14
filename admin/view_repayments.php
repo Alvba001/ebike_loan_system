@@ -20,7 +20,7 @@ $query = $conn->prepare("
     FROM repayments
     JOIN loan_applications ON repayments.loan_id = loan_applications.loan_id
     JOIN users ON loan_applications.user_id = users.user_id
-    ORDER BY repayments.payment_date DESC
+    ORDER BY repayments.date_paid DESC
 ");
 
 $query->execute();
@@ -51,7 +51,7 @@ $result = $query->get_result();
             text-align: left;
         }
         tr:hover {
-            background: #f5f9ff;
+            /* background: #f5f9ff;  */
         }
         .paid {
             color: green;
@@ -105,7 +105,7 @@ $result = $query->get_result();
                 echo "<td>{$row['bike_model']}</td>";
                 echo "<td class='paid'>₦".number_format($row['amount_paid'])."</td>";
                 echo "<td class='balance'>₦".number_format($row['balance'])."</td>";
-                echo "<td>{$row['payment_date']}</td>";
+                echo "<td>{$row['date_paid']}</td>";
                 echo "</tr>";
             }
 
