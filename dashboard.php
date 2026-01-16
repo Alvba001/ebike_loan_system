@@ -418,33 +418,7 @@ if ($loan) {
     
         <hr>
     
-        <!-- Quick Actions -->
-        <div class="grid">
-            <div class="quick-card">
-                <h3>Apply for a Loan</h3>
-                <a href="apply_loan.php" class="btn">Start Application</a>
-            </div>
-    
-            <div class="quick-card">
-                <h3>Loan Status</h3>
-                <a href="view_status.php" class="btn">Check Status</a>
-            </div>
-    
-            <div class="quick-card">
-                <h3>Make Repayment</h3>
-                <a href="make_repayment.php" class="btn">Pay Now</a>
-            </div>
-    
-            <div class="quick-card">
-                <h3>Repayment History</h3>
-                <a href="repayment_history.php" class="btn">View Records</a>
-            </div>
-    
-            <div class="quick-card">
-                <h3>Notifications</h3>
-                <a href="notifications.php" class="btn">View Alerts</a>
-            </div>
-        </div>
+       
     
 
     

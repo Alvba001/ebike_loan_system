@@ -56,13 +56,11 @@ if (isset($_POST['apply'])) {
         $sql = "INSERT INTO loan_applications 
                 (user_id, nin, amount, bike_model, duration, purpose, id_card, utility_bill, status, date_applied)
                 VALUES 
-                (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', NOW())";
+                (?, ?, ?, ?, ?, ?, ?, ?, 'pending', NOW())";
         
         $stmt = $conn->prepare($sql);
-        // Assuming database schema matches. 
-        // Note: guarantor_doc and support_doc might be NOT NULL in DB. If so, we might need to alter DB or pass dummy.
-        // Based on previous code, they were just strings. Hopefully empty string works.
-        $stmt->bind_param("isssssssss", $user_id, $nin, $amount, $bike_model, $duration, $purpose, $id_card, $utility_bill);
+        // Fixed bind_param to match 8 placeholders (isssssss)
+        $stmt->bind_param("isssssss", $user_id, $nin, $amount, $bike_model, $duration, $purpose, $id_card, $utility_bill);
 
         if ($stmt->execute()) {
             $success = true;

@@ -84,10 +84,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'borrower') {
 
         <!-- Right: Icons + Logout -->
         <div class="d-flex align-items-center">
-            <!-- Notification Icon -->
-            <a href="notifications.php" class="nav-icon" title="Notifications">
-                <i class="bi bi-bell-fill"></i>
-            </a>
+            
 
             <!-- Profile Icon -->
             <a href="profile.php" class="nav-icon" title="Profile">

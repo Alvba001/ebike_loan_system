@@ -40,9 +40,20 @@ if ($tranx['status'] && $tranx['data']['status'] === 'success') {
     $check = $conn->query("SELECT * FROM repayments WHERE reference = '$reference'");
     if($check->num_rows == 0) {
         // ID generation or auto-increment? Assuming auto-increment
-        // Need to check if 'repayments' table exists and has these columns.
-        $stmt = $conn->prepare("INSERT INTO repayments (loan_id, amount_paid, reference, status, date_paid) VALUES (?, ?, ?, 'paid', NOW())");
-        $stmt->bind_param("ids", $loan_id, $amount_paid, $reference);
+// Fetch Loan Amount to calculate balance
+        $loanApp = $conn->query("SELECT amount FROM loan_applications WHERE loan_id='$loan_id'")->fetch_assoc();
+        $total_loan_amount = floatval($loanApp['amount']);
+
+        // Fetch Total Paid So Far
+        $prevPayRow = $conn->query("SELECT IFNULL(SUM(amount_paid),0) AS total FROM repayments WHERE loan_id = '$loan_id'")->fetch_assoc();
+        $prev_total_paid = floatval($prevPayRow['total']);
+
+        // Calculate New Balance (Loan Amount - (Previous Paid + Current Payment))
+        $new_balance = $total_loan_amount - ($prev_total_paid + $amount_paid);
+        if ($new_balance < 0) $new_balance = 0;
+
+        $stmt = $conn->prepare("INSERT INTO repayments (loan_id, amount_paid, reference, status, date_paid, balance) VALUES (?, ?, ?, 'paid', NOW(), ?)");
+        $stmt->bind_param("idsd", $loan_id, $amount_paid, $reference, $new_balance);
         
         if($stmt->execute()) {
             // Check if fully paid
