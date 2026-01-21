@@ -24,20 +24,17 @@ while ($row = $result->fetch_assoc()) {
 
     // Reminder 3 days before
     if ($days_left == 3) {
-        $msg = "Reminder: Your repayment of ₦$amount for $model is due in 3 days.";
-        $conn->query("INSERT INTO notifications (user_id, message) VALUES ('$user_id', '$msg')");
+        // Notification logic removed as per user request
     }
 
     // Reminder on due date
     if ($days_left == 0) {
-        $msg = "Your repayment of ₦$amount for $model is due today. Please pay to avoid penalty.";
-        $conn->query("INSERT INTO notifications (user_id, message) VALUES ('$user_id', '$msg')");
+        // Notification logic removed as per user request
     }
 
     // Overdue notification
     if ($days_left < 0) {
-        $msg = "OVERDUE: You missed your repayment of ₦$amount for $model. Pay immediately.";
-        $conn->query("INSERT INTO notifications (user_id, message) VALUES ('$user_id', '$msg')");
+        // Notification logic removed as per user request
     }
 }
 
