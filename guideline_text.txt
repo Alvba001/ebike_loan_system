@@ -1,0 +1,571 @@
+SWE4600:Final Year Project
+Step by Step Guide
+Presented by :
+Maryam Ibrahim Mukhtar
+Department of Software Engineering
+Bayero University Kano.
+August , 2024
+
+Outline
+• Introduction
+• General Formatting
+• Preliminary Pages
+• Chapter One
+• Chapter Two
+• Chapter Three
+• Chapter Four
+• Chapter Five
+• Appendix
+• Defense Slides
+• Assessment
+• Important Deadlines
+• Conclusion
+2SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+Introduction
+• In most universities all over the world, undergraduate students in
+their final year are expected to complete a research project as part
+of their requirements for graduation.
+• Students going through  Software Engineering or related program
+are normally required to execute software projects which involve
+going through the complete system development cycle from
+beginning to end.
+• In spite of the fact that such students take courses on research
+methodology and Software Engineering during their programs,
+many of them, by the time they start these projects, have little or
+no ideas on how to systematically carry out such software
+projects.
+• This presentation is to guide such students in how to carry out
+Software Engineering projects from beginning to end and how to
+fully prepare the documentation for these projects.
+3SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+General Formatting
+• The writing should be in Times New Roman Font Type. 12points,
+Line Spacing 1.5
+• Chapters Heading should be in Centralized Alignment
+• Sub-Sections should be in Left Alignment
+• Inside each Subsection, the writing Should be Justified aligned.
+• APA reference style should be used.
+• Page Numbering should be in center of a page.
+• Each Chapter should start on a new page.
+• All abbreviations must be written completely the first time they
+are used with parenthesis around the abbreviation.
+• All figures and tables must be numbered according to the chapter
+and referenced inside the chapter.
+• For example the first figure in chapter 3 should be labelled Figure 3.1, the
+fourth table in chapter 4 should be Table 4.4.
+• Tables are labelled at the Top, Figures are labelled at the bottom.
+• Both Tables and Figures and their labels are center aligned.
+4SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+Preliminary Pages
+• Preliminary pages include several key sections that provide
+essential information and context for the main content.
+• The preliminary pages of SWE4600:Final Year Project should
+contain the following:
+• Title Page
+• Declaration
+• Certification
+• Dedication
+• Acknowledgement
+• Table of Content
+• List of Tables
+• List of Figures
+• Abstract
+• Preliminary pages are numbered in Roman Numerals
+• Title page has no page numbering
+5SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+Title Page: The Format
+6SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+
+Declaration Page: The Format
+7SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+
+Certification Page: The Format
+8SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+
+Acknowledgement, Table of Content, List of Tables
+and Figures, Abstract
+• Acknowledgements: A section where the author(s) can thank
+individuals, organizations, or institutions that helped in the
+completion of the project.
+• Table of Contents: Lists the main sections and subsections of
+the project, along with their page numbers, providing an
+organized outline of the document.
+• List of Figures and Tables: If the project includes various
+figures, tables, or illustrations, this list helps readers quickly
+locate these items.
+• Abstract: A brief summary of the project, including:
+Background(one sentence),a clear statement of the aim,
+methodology(a sentence on each chapter)and conclusions.
+• Written in present tense.
+9SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+Chapter One
+ Introduction
+• This Chapter of SWE4600:Final Year Project should contain the
+following:
+ 1.1 Background of Study
+ 1.2 Problem Statement
+ 1.3 Aim and Objectives
+ 1.4 Significance of the Study
+ 1.5 Scope
+1.6 Summary
+10SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+Background of Study
+• Background of Study: Here students are to provide an overview
+of the topic, summarize existing knowledge, and explain the
+problem the research will address. You must use citation
+• Example: Background of Study for Student Record System
+11SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+
+Problem Statement
+• Problem Statement is a clear description of the problem that
+the project is addressing.
+• The problem statement should generally have two (2)
+paragraphs. The first paragraph should state the problem that
+is the reason for the project. The second paragraph should
+describe the proposed solution.
+• Example: Problem Statement for a Student Record System
+The current student record management system at  XYZ university
+involves extensive paperwork for managing student enrolment,
+academic records, and attendance. This process is error-prone,
+time-consuming, and prone to data loss or mismanagement.
+Additionally, generating reports and retrieving student information
+requires considerable effort and often results in delays.
+Hence the need for an automated system that solves the above
+mentioned problems
+12SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+Aim and Objectives
+• The aim should normally be written using an infinitive verb,
+something like: The aim of this project is to develop, to generate,
+to map, to build, to investigate, to explore
+• Objectives are often presented as a formatted list and they
+should clearly make visible the sequence of big steps in the
+project with each step having a definable outcome.
+Example
+The Aim of this project is to develop an event hall booking
+system that simplifies the process of reserving and managing
+event spaces. The Objectives are:
+i. To design and implement functionalities for searching, viewing,
+and reserving event halls.
+ii. To design and implement set up notifications  feature to
+confirm bookings and remind users of upcoming events.
+iii.  To design and implement an admin panel for managing
+bookings and updating hall information.
+13SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+Significance of Study
+• Significance of the Study: Here students are to explain the
+importance and potential impact of the research.
+• It should outlines how the project contributes to existing
+knowledge, solves a problem, or benefits specific groups.
+• Example: Significance of Study for a Student Record System
+This project aims to improve how educational institutions manage
+student records by developing an efficient, automated system. The
+system will reduce manual errors, enhance data security, and
+allow easy access to student information, benefiting both
+administrators and students. It will also save time and resources,
+contributing to a smoother administrative process and better
+decision-making based on accurate data. This study can serve as a
+foundation for future improvements in student record management
+systems.
+14SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+Scope
+• Scope: Here students are to define the boundaries and specific
+aspects that their study will cover.
+• It should outlines what the project will include, what it will not
+address, and any limitations or constraints.
+• Example: Scope for a Student Record System
+This project will develop a Student Record System that automates
+student data management. The system will include:
+1.Features: Automated data entry, secure login, real-time updates,
+and simple interfaces for users.
+2.Users: Administrative staff and students.
+The project will not include mobile app development or integration with
+external systems. It will focus only on creating a web-based system for
+managing student records.
+15SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+Summary
+• Summary: Here students are to to reinforce the chapter’s content
+and ensure that readers understand the essential takeaways.
+• Example : Chapter 1 summary for a topic Student Record System
+This Chapter introduced the development of a Student Record System
+designed to enhance the management of student data in educational
+institutions. The chapter outlined the challenges associated with
+traditional record-keeping methods, including inefficiencies and
+security concerns. Key points discussed include the need for improved
+data accuracy, automated processes, and secure access controls. The
+chapter also highlighted the objectives of the project, which include
+creating a system with automated data entry, real-time updates, and
+user-friendly interfaces for administrative staff and students. The
+chapter set the stage for the subsequent sections by establishing the
+context and importance of the project, paving the way for a detailed
+exploration of the system’s design and implementation in the following
+chapters.
+16SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+Chapter Two
+Literature Review
+• This Chapter of SWE4600:Final Year Project should contain the
+following:
+ 2.1  Introduction
+ 2.2  Overview of Concept (Optional subsection)
+ 2.2  Related Works
+ 2.3  Summary
+17SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+Introduction, Related Work, Summary
+• Introduction : Here students are to briefly explain what the
+chapter will contain.
+• Related Works
+• Students are to review at least 10 papers related to their work.
+• Since the project is on Development of software, the review should
+be on projects focused on developing Software.
+• Papers included in your review should be published not later than
+10 years ago (2014-Date).
+• Papers must be arranged in Ascending or Descending order.
+• Use Google Scholar database
+• Tip: Use a table to create the review, then translate the table—See
+slide 19 for an example.
+• Summary : Here students are to provide summary of all the
+things covered in the chapter.
+18SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+Literature Review Table
+Table 2.1: Summary of Related works
+Sample translation
+Ali et al. (2020) investigated automation in student record systems. Their
+software is web application developed using PHP programming language and
+MYSQL database. Their  application provides functionalities such as automated
+data backup, attendance tracking and performance analysis.
+19SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+
+Chapter Three
+Methodology
+• This Chapter of SWE4600:Final Year Project should contain the
+following:
+  3.1  Introduction
+  3.2  Project Workflow
+  3.3  System Development Model
+  3.4  Analysis of Existing and Proposed System
+ 3.4.1  Description of Existing System
+ 3.4.2  Requirement Elicitation
+ 3.4.3  Requirements Definition
+ 3.4.4  Requirement Analysis
+ 3.5 System Design
+ 3.5.1  Description of Proposed System
+ 3.5.2  Architecture Design
+ 3.5.3  Database Design
+ 3.6.  Summary
+20SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+Project Workflow , SDLC, Existing System
+• Project Workflow: Here students are to provide a diagram showing
+the various stages their project will follow from beginning to end.
+• Example:
+• System Development Model : Here students are to choose an
+SDLC for their project and briefly explain why it is selected.
+• Description of Existing System: Here students are to describe in
+details how the existing system works, who interact with it and
+what is his/her role/function. See slide 22 for an example
+21SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+Introduction
+ Literature
+Review
+Analysis &
+Design
+Implementation
+and Testing
+ Writeup
+ Defence
+Slides
+Description Existing System
+• Example for Student Record System.
+•Administrative Staff:
+•Role: Handle all student records, including enrolment forms,
+grades, attendance sheets, and personal details. They are
+responsible for data entry, updating records, and managing
+physical files.
+•Teachers/Faculty:
+•Role: Provide updates on student performance, attendance,
+and other academic information using paper forms or
+handwritten notes. They submit these records to administrative
+staff.
+•Students:
+•Role: Access their own records, grades, and attendance by
+requesting physical copies or information from administrative
+staff. They may also submit paper forms for updates or changes
+to their records.
+22SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+Elicitation, Definition and Analysis
+• Requirement Elicitation: Here students are to provide detailed
+explanation of their findings during requirements elicitation.
+• Evidence of elicitation must be attached in appendix See
+slide 24 for an example.
+• Requirements Definition:Here students are to state the User
+requirements and non-functional requirements of their system.
+See slide 25 for an example.
+• Requirement Analysis: Here students are to analyze their
+requirements using Use Case diagram and its description. See
+slide 26 and 27 for an example.
+23SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+Requirement Elicitation
+• Example for Student Record System.
+• This section summarizes the findings from interviews conducted
+to gather requirements for the development of a Student Record
+System. The Stakeholders Interviewed include Administrative Staff
+, Teachers/Faculty and Students. Interview Findings:
+• Students
+• Key Needs:
+• Self-Service Portal: Access to personal records, grades, and
+attendance.
+• Update Requests: Ability to request updates or corrections to their
+records.
+• Data Security: Assurance that personal data is protected and only
+accessible to authorized users.
+• Challenges:
+• Limited access to up-to-date personal records.
+• Dependence on administrative staff for record updates and
+information retrieval.
+24SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+Requirement Definition
+• Example for Student Record System.
+• User Requirements:
+• Administrators  shall be able to add, update, and delete student records.
+• Administrators should be able to generate reports.
+• Administrators  shall be should be able Manage User Accounts.
+• Teachers should be able to input student grades and update and
+attendance.
+• Students shall be able to view their own grades and attendance records.
+• Non-Functional Requirements:
+• *The system must have role-based access to ensure that only authorized
+personnel can view or modify sensitive information.
+• The system should handle high volumes of concurrent users and data
+transactions efficiently.
+• The system should be reliable and Include backup and recovery features to
+prevent data loss.
+25SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+Requirement Analysis- Use Case Diagram
+• Example for Student
+Record System.
+• Actors:
+• Administrative Staff,
+Teachers, Students
+• Use Cases:
+• Add/Update/Delete
+Student Record ---
+(Manage Record)
+•  Generate Reports,
+• Manage User Accounts
+• Input Grades,
+•  Update Attendance,
+• View grades and
+Attendance Records,
+Request Record
+Update
+• Login
+26SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+Manage Record
+Generate Report
+Manage Accounts
+Input Grades
+Update
+Attendance
+View Grades
+Request Update
+Admin
+Teacher
+Student
+Login
+Requirement Analysis- Use Case Description
+• Example for Login Use Case -Student Record System.
+27SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+Use Case  Name : Login                                                         Priority : High
+Actor: Shopper
+Description: This use case documents the procedure for logging into the library management
+system.
+Trigger : External
+Preconditions : The system database is up-to-date and on-line
+Normal Course:
+1) The system requests that the actor enters his/her user id and password.
+2) The actors enters user id and password.
+3) The system validates the user id and password (Alternative course).
+4) The user is logged into the system
+5) The use case ends.
+Alternative course:
+4b. The user id or password is invalid
+1) The System ask the user for a valid password
+2) The User enters another wrong password
+3) The system blocks the user
+4) The Use Case ends
+Post Conditions: The login record is saved.
+Exceptions:
+1) The System displays  “Invalid User name or password”
+2) The System displays  “Re-enter a valid password”
+3) The system display “You have been blocked contact admin to resolve login issue”
+System Design
+• System Design: Here students are to briefly explain what the
+section will contain.
+• Description of Proposed System: Here students are to describe
+their system using an activity and/or sequence and/or state
+diagram.
+• Architecture Design: Here students are to describe their system
+using class diagram and/or Package Diagram
+• Database Design: Here students are to describe their system
+using Entity Relationship (ER) diagram.
+28SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+Chapter Four
+Implementation & Testing
+• This Chapter of SWE4600:Final Year Project should contain the
+following:
+4.1 Introduction
+4.2  Implementation
+  4.2.1  Implementation Tools
+  4.2.2  Algorithms of major functionality
+  4.2.3  Description of System Operation (using sample interfaces)
+4.3 Testing
+  4.3.1  Unit testing
+  4.3.3  Integration testing
+  4.3.4  System testing
+  4.3.5  Usability Testing
+4.4  Summary
+29SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+Implementation
+• Implementation: Here students are to briefly explain what the
+section will contain.
+• Implementation Tools : Here students are to state the tools such as
+operating System, IDE, Programming Language, Database etc.. they
+used and briefly explain why they choose them.
+• Algorithms of major functionality : Here students are to provide the
+algorithms used to create the major functionalities in their system.
+•  Description of System Operation: Here students are to provide
+screen captures of the developed system.
+• Students should capture them in such a way that the person reading
+the project can understand the way the system works.
+•  It should capture the functionalities which algorithms were given in
+4.2.2.
+30SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+Testing
+• Testing: Here students are to explain what the section will contain.
+• Unit Testing: Here students are to provide unit test cases of their
+major functionalities. They should be align to the functional in 4.2.2
+• Integration testing:Here students are to provide Integration test
+cases of their major functionalities.
+• System testing:Here students are to explain how the whole system
+was tested to make sure everything is working.
+• Usability Testing:Here students are to do a usability test of their
+developed system (Using a suitable questionnaire)
+31SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+Chapter Five
+Summary, Conclusion and Recommendation
+• This Chapter of SWE4600:Final Year Project should contain the
+following:
+5.1  Summary
+5.2  Conclusion
+5.3  Limitation
+5.4  Recommendation
+32SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+Summary, Conclusion, Limitation and
+Recommendation
+• Summary: Here students are to write a paragraph each
+summarizing the content of all the chapters in their project.
+• Conclusion: Here Students are to capture  brief introduction to the
+project, problem statement, methodology used and key results
+obtained(Functionalities of their software)
+•  Limitation: Here Students are to state functionalities that should
+be in their system but are not.
+• Example an online ordering system that does not contain a real
+payment gateway.
+• Recommendation: Here Students are to indicate areas
+(functionalities) to expand the project further.
+33SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+Appendix
+• References: Here students are to provide list of all the cited works.
+• Any work cited must reference.
+•  Any reference must have been cited in the work.
+• Elicitation evidence: Here Students are expected to provide evidence
+of the elicitation conducted in 3.4.2 (example a copy of questions
+used in eliciting the requirements)
+• System Testing Evidence, Here Students are expected to provide
+evidence of the usability testing conducted in 4.3.5 (example a copy
+of questions used in eliciting the requirements)
+• Codes of major functionality– Here Students are expected to provide
+section of codes aligning to 4.2.2 (algorithm for major
+functionalities)
+34SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+Defense Slides
+• The Defence Slides of SWE4600:Final Year Project should contain
+the following:
+• Slide 1: Project Title, Student Name & ID, Supervisor Name
+• Slide 2: Outline
+• Slide 3 : Introduction
+• Slide 4: Problem Statement
+• Slide 5: Aim and objectives
+• Slide 6 :A summary of literatures reviewed
+• Slide 7 : Methodology Flow
+• Slide 8 :Use Case Diagram
+• Slide 9: Summary of Implementation Tools
+• Slide 10: Summary of Testing stages
+• Slide 11:Conclusions
+• Slide 12: References
+35SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+Assessment
+• SWE4600:Final Year Project is assess as following:
+• Supervisor: 60 marks
+• Assessment area all the chapters and software
+• Internal and External Defense: 40 marks
+• Assessment areas include Composure, Quality of the slides,
+demonstrating the software, navigating through source code
+and database.
+36SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+Important Deadlines
+• Undergraduate Project Topic Submission and Approval – A Week
+after mid semester
+• Chapter 1 and 2 Submission and Approval : A week to first
+semester Exams
+• Chapter 3 Submission and Approval : First Week in Second
+Semester
+• Chapter 4 and 5 Submission and Approval : 4th Week in Second
+Semester
+• Exact Dates and Time will be communicated to you.
+37SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+Conclusion
+• This presentation is to guide students on how to write their
+final year project.
+• It also guide students on what to include in defense
+presentations slides of their projects after they have completed
+them.
+38SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
+Questions??
+39SWE4600: Final Year Project-Guide-  By Maryam Ibrahim
+Mukhtar
