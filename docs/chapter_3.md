@@ -72,20 +72,26 @@ Requirements were gathered through simulated interviews with potential stakehold
 The system's interactions are depicted in the Use Case Diagram below.
 
 ```mermaid
-usecaseDiagram
-    actor Borrower
-    actor Admin
+graph LR
+    %% Actors
+    Borrower((Borrower))
+    Admin((Admin))
 
-    usecase "Register/Login" as UC1
-    usecase "Apply for Loan" as UC2
-    usecase "Upload Documents" as UC3
-    usecase "Provide Guarantor Info" as UC4
-    usecase "View Loan Status" as UC5
-    usecase "Make Repayment" as UC6
-    usecase "Manage Applications" as UC7
-    usecase "Approve/Reject Loan" as UC8
-    usecase "View Reports" as UC9
+    %% System Boundary
+    subgraph System [Loan Management System]
+        direction TB
+        UC1[Register/Login]
+        UC2[Apply for Loan]
+        UC3[Upload Documents]
+        UC4[Provide Guarantor Info]
+        UC5[View Loan Status]
+        UC6[Make Repayment]
+        UC7[Manage Applications]
+        UC8[Approve/Reject Loan]
+        UC9[View Reports]
+    end
 
+    %% Relationships
     Borrower --> UC1
     Borrower --> UC2
     Borrower --> UC3
