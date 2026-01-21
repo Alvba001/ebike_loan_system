@@ -36,13 +36,15 @@ if (isset($_POST['register'])) {
 <head>
     <meta charset="UTF-8">
     <title>User Registration</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css?v=<?php echo time(); ?>">
 </head>
 
 <body class="auth-body">
 
 <div class="auth-container">
     <div class="auth-card">
+        <img src="assets/img/logo.png.png" alt="Logo" class="auth-logo">
+        <div class="auth-system-name">E-Bike Loan System</div>
         <h2 class="auth-title">Create an Account</h2>
 
         <form action="" method="POST" class="auth-form" onsubmit="return validateForm()">

@@ -105,6 +105,10 @@ if (!$loan) {
             <span class="value"><?= $loan['nin'] ?></span>
         </div>
 
+        <div class="row"><span class="label">BVN:</span>
+            <span class="value"><?= isset($loan['bvn']) ? $loan['bvn'] : 'N/A' ?></span>
+        </div>
+
         <div class="row"><span class="label">Bike Model:</span>
             <span class="value"><?= $loan['bike_model'] ?></span>
         </div>
@@ -124,6 +128,28 @@ if (!$loan) {
         <div class="row"><span class="label">Applied On:</span>
             <span class="value"><?= $loan['date_applied'] ?></span>
         </div>
+
+        <hr>
+        <h3>Guarantor Information</h3><br>
+
+        <?php
+        // Fetch Guarantor Info
+        $g_sql = "SELECT * FROM guarantor_information WHERE loan_application_id = '$loan_id'";
+        $g_result = $conn->query($g_sql);
+        $guarantor = $g_result->fetch_assoc();
+        
+        if ($guarantor) {
+        ?>
+            <div class="row"><span class="label">Name:</span> <span class="value"><?= $guarantor['full_name'] ?> (<?= $guarantor['gender'] ?>)</span></div>
+            <div class="row"><span class="label">Phone:</span> <span class="value"><?= $guarantor['phone'] ?></span></div>
+            <div class="row"><span class="label">Address:</span> <span class="value"><?= $guarantor['address'] ?></span></div>
+            <div class="row"><span class="label">Relationship:</span> <span class="value"><?= $guarantor['relationship'] ?> (Known for <?= $guarantor['years_known'] ?>)</span></div>
+            <div class="row"><span class="label">Employment:</span> <span class="value"><?= $guarantor['occupation'] ?> at <?= $guarantor['employer'] ?></span></div>
+            <div class="row"><span class="label">Work Address:</span> <span class="value"><?= $guarantor['work_address'] ?></span></div>
+            <div class="row"><span class="label">ID Details:</span> <span class="value"><?= $guarantor['id_type'] ?> - <?= $guarantor['id_number'] ?></span></div>
+        <?php } else { ?>
+            <p style="color:red;">No Guarantor Information Found.</p>
+        <?php } ?>
 
         <hr>
         <h3>Uploaded Documents</h3><br>

@@ -23,6 +23,7 @@ if (isset($_POST['apply'])) {
     $duration   = $_POST['duration'];
     $purpose    = $_POST['purpose'];
     $nin        = $_POST['nin'];
+    $bvn        = $_POST['bvn'];
 
     $upload_dir = "uploads/";
     $allowed_ext = ['jpg', 'jpeg', 'png', 'pdf'];
@@ -54,16 +55,17 @@ if (isset($_POST['apply'])) {
     } else {
         // Insert
         $sql = "INSERT INTO loan_applications 
-                (user_id, nin, amount, bike_model, duration, purpose, id_card, utility_bill, status, date_applied)
+                (user_id, nin, bvn, amount, bike_model, duration, purpose, id_card, utility_bill, status, date_applied)
                 VALUES 
-                (?, ?, ?, ?, ?, ?, ?, ?, 'pending', NOW())";
+                (?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending_guarantor', NOW())";
         
         $stmt = $conn->prepare($sql);
-        // Fixed bind_param to match 8 placeholders (isssssss)
-        $stmt->bind_param("isssssss", $user_id, $nin, $amount, $bike_model, $duration, $purpose, $id_card, $utility_bill);
+        // Fixed bind_param to match 9 placeholders (issssssss)
+        $stmt->bind_param("issssssss", $user_id, $nin, $bvn, $amount, $bike_model, $duration, $purpose, $id_card, $utility_bill);
 
         if ($stmt->execute()) {
             $success = true;
+            $new_loan_id = $stmt->insert_id; // Get the generated ID
         } else {
             $error = "Database Error: " . $stmt->error;
         }
@@ -271,6 +273,11 @@ if (isset($_POST['apply'])) {
             </div>
 
             <div class="form-group">
+                <label>BVN Number</label>
+                <input type="text" name="bvn" class="form-input" placeholder="Enter BVN Number" required maxlength="11" minlength="11">
+            </div>
+
+            <div class="form-group">
                 <label>Upload ID Card</label>
                 <div class="upload-box">
                     <input type="file" name="id_card" required accept=".jpg,.jpeg,.png,.pdf" onchange="updateFileName(this)">
@@ -291,7 +298,7 @@ if (isset($_POST['apply'])) {
                 <textarea name="purpose" class="form-textarea" placeholder="Describe the purpose of this loan..." required></textarea>
             </div>
 
-            <button type="submit" name="apply" class="btn-submit">Submit Application</button>
+            <button type="submit" name="apply" class="btn-submit">Next: Guarantor Info</button>
         </form>
     </div>
 
@@ -303,7 +310,7 @@ if (isset($_POST['apply'])) {
         <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
         <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
     </svg>
-    <div class="success-text">Application Submitted Successfully!</div>
+    <div class="success-text">Step 1 Complete! Redirecting...</div>
 </div>
 
 <script>
@@ -322,7 +329,7 @@ if (isset($_POST['apply'])) {
         
         // Wait 2000ms then redirect
         setTimeout(() => {
-            window.location.href = 'application_status.php';
+            window.location.href = 'guarantor_info.php?loan_id=<?php echo $new_loan_id; ?>';
         }, 2000);
     });
     <?php endif; ?>
