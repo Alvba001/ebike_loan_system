@@ -53,7 +53,7 @@ if (empty($email)) {
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        $u = $resullbrot->fetch_assoc();
+        $u = $result->fetch_assoc();
         $email = $u['email'];
     } else {
         die("Error: User email not found. Please log in again.");

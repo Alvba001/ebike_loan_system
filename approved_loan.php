@@ -92,6 +92,19 @@ $remaining = floatval($loan['amount']) - $paid;
         text-transform: uppercase;
         letter-spacing: 1px;
     }
+    .interest-badge {
+        display: inline-block;
+        padding: 6px 14px;
+        background: #f3f4f6;
+        color: #4b5563;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-left: 10px;
+    }
     .subtitle {
         font-size: 1.1rem;
         color: #888;
@@ -181,6 +194,15 @@ $remaining = floatval($loan['amount']) - $paid;
     <div class="split-right">
         <div class="info-content">
             <span class="status-badge">Loan Active</span>
+            
+            <?php
+            $duration = intval($loan['duration']);
+            $interest_text = "10% Interest";
+            if ($duration == 6) $interest_text = "15% Interest";
+            if ($duration == 12) $interest_text = "20% Interest";
+            ?>
+            <span class="interest-badge"><?php echo $interest_text; ?></span>
+
             <h1>Approved & Active</h1>
             
             <?php if (isset($_GET['payment']) && $_GET['payment'] == 'success'): ?>
@@ -195,6 +217,7 @@ $remaining = floatval($loan['amount']) - $paid;
             <div class="description">
                 <p>Congratulation! Your loan application has been approved. You are now required to make monthly repayment installments to clear your balance.</p>
             </div>
+             
 
             <div class="actions">
                 <?php if ($remaining > 0): ?>

@@ -72,11 +72,17 @@ if ($tranx['status'] && $tranx['data']['status'] === 'success') {
                 
                 // If the total user has paid covers this cumulative milestone, mark it as paid.
                 if ($total_paid >= $cumulative_due) {
-                     $conn->query("UPDATE repayment_schedule SET status='paid', date_paid=NOW() WHERE schedule_id='" . $sch['schedule_id'] . "'");
+                     // Only mark as paid if it's currently pending (to preserve original date_paid)
+                     if ($sch['status'] !== 'paid') {
+                        $conn->query("UPDATE repayment_schedule SET status='paid', date_paid=NOW() WHERE schedule_id='" . $sch['schedule_id'] . "'");
+                     }
                 } else {
                      // If total paid is less than cumulative due, it means this month (and subsequent ones) isn't fully paid yet.
                      // We leave it as pending. Note: We don't support 'partial' status yet per requirements, only pending/paid.
-                     $conn->query("UPDATE repayment_schedule SET status='pending' WHERE schedule_id='" . $sch['schedule_id'] . "'");
+                     // Only update to pending if it was somehow marked paid erroneously (rare case) or just ensure it stays pending
+                     if ($sch['status'] !== 'pending') {
+                        $conn->query("UPDATE repayment_schedule SET status='pending', date_paid=NULL WHERE schedule_id='" . $sch['schedule_id'] . "'");
+                     }
                 }
             }
             // ================================================================== //

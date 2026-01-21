@@ -2,3 +2,5 @@
 /admin/add_bike.php
 /admin/assign_bike.php
 uploads
+check_schedule_create.php
+check_repayment_schema.php

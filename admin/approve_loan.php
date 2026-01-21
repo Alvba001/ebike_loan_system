@@ -25,21 +25,42 @@ if (!$loan) {
 
 $amount     = $loan['amount'];
 $duration   = $loan['duration'];
-$monthly_payment = $amount / $duration;
+
+// Interest Logic
+$interest_rate = 1.0; // Default
+if ($duration == 3) {
+    $interest_rate = 1.10; // 110%
+} elseif ($duration == 6) {
+    $interest_rate = 1.15; // 115%
+} elseif ($duration == 12) {
+    $interest_rate = 1.20; // 120%
+}
+
+$total_payable = $amount * $interest_rate;
+$monthly_payment = $total_payable / $duration;
 
 // Approve loan
-$conn->query("UPDATE loan_applications SET status='approved' WHERE loan_id='$loan_id'");
+$updateStmt = $conn->prepare("UPDATE loan_applications SET status='approved' WHERE loan_id=?");
+$updateStmt->bind_param("i", $loan_id);
+if (!$updateStmt->execute()) {
+    echo "<script>alert('Error approving loan: " . $updateStmt->error . "'); window.location='loan_details.php?id=$loan_id';</script>";
+    exit();
+}
 
 // Generate repayment schedule
-for ($i = 1; $i <= $duration; $i++) {
+$stmt = $conn->prepare("INSERT INTO repayment_schedule (loan_id, due_date, amount_due, status) VALUES (?, ?, ?, 'pending')");
 
+for ($i = 1; $i <= $duration; $i++) {
     // Due date = 1 month from now, 2 months, 3 months... etc.
     $due_date = date("Y-m-d", strtotime("+$i month"));
-
-    $conn->query("
-        INSERT INTO repayment_schedule (loan_id, due_date, amount_due)
-        VALUES ('$loan_id', '$due_date', '$monthly_payment')
-    ");
+    
+    // Bind: loan_id (int), due_date (string), amount_due (double)
+    $stmt->bind_param("isd", $loan_id, $due_date, $monthly_payment);
+    
+    if (!$stmt->execute()) {
+        // Log error (or display for now)
+        die("Error generating schedule for month $i: " . $stmt->error);
+    }
 }
 
 echo "<script>
