@@ -49,7 +49,6 @@ $total_repayments = $conn->query("
 
 $outstanding_balance = floatval($total_disbursed) - floatval($total_repayments);
 
-// Bikes section removed
 
 // Defaulters
 $today = date('Y-m-d');
@@ -94,8 +93,6 @@ $defaulters = $conn->query("
         </div>
 
         <div class="actions">
-            <a href="check_reminders.php" class="btn">Run Reminder Check</a>
-            <a href="reports.php" class="btn" style="background:#2b8aef">Open Reports</a>
             <a href="reports.php" class="btn" style="background:#2b8aef">Open Reports</a>
         </div>
     </div>
