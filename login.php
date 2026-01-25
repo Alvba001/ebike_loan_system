@@ -68,6 +68,9 @@ if (isset($_POST['login'])) {
             Don’t have an account? 
             <a href="register.php" class="auth-link">Register here</a>
         </p>
+        <p class="auth-text" style="font-size: 0.9em; margin-top: 10px;">
+            <a href="terms.php" class="auth-link" style="color: #666;">Terms and Conditions</a>
+        </p>
     </div>
 </div>
 

@@ -171,7 +171,6 @@
 
 .nav-left li a,
 .nav-right li a {
-    color: #e5e7eb;
     font-weight: 600;
     text-decoration: none;
     transition: color .2s ease;

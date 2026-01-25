@@ -71,7 +71,8 @@ if ($tranx['status'] && $tranx['data']['status'] === 'success') {
                 $cumulative_due += floatval($sch['amount_due']);
                 
                 // If the total user has paid covers this cumulative milestone, mark it as paid.
-                if ($total_paid >= $cumulative_due) {
+                // Using round() to prevent floating point precision issues
+                if (round($total_paid, 2) >= round($cumulative_due, 2)) {
                      // Only mark as paid if it's currently pending (to preserve original date_paid)
                      if ($sch['status'] !== 'paid') {
                         $conn->query("UPDATE repayment_schedule SET status='paid', date_paid=NOW() WHERE schedule_id='" . $sch['schedule_id'] . "'");
@@ -90,7 +91,7 @@ if ($tranx['status'] && $tranx['data']['status'] === 'success') {
             // Check if fully paid (Main Loan Status)
             $loan = $conn->query("SELECT amount FROM loan_applications WHERE loan_id='$loan_id'")->fetch_assoc();
             
-            if ($total_paid >= $loan['amount']) {
+            if (round($total_paid, 2) >= round($loan['amount'], 2)) {
                 $conn->query("UPDATE loan_applications SET status='completed' WHERE loan_id='$loan_id'");
             }
 

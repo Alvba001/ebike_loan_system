@@ -38,162 +38,293 @@ if (!$loan) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Loan Details</title>
+    <title>Loan Details - #<?= $loan_id ?></title>
     <link rel="stylesheet" href="../assets/css/style.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        .details-box {
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-            box-shadow: 0 1px 10px rgba(0,0,0,0.1);
+        body {
+            background-color: #f7f9fc;
+            font-family: 'Inter', sans-serif;
+            color: #334155;
         }
-        .row { margin-bottom: 12px; }
-        .label { font-weight: bold; color: #333; }
-        .value { margin-left: 8px; }
 
-        .doc-link {
-            background: #0066cc;
-            color: white;
-            padding: 7px 12px;
-            text-decoration: none;
-            border-radius: 6px;
-            font-size: 14px;
-            margin-top: 5px;
+        .main-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .page-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        /* Grid Layout */
+        .details-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+        }
+        
+        @media (max-width: 900px) {
+            .details-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Cards */
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        
+        .card-header {
+            font-size: 16px;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-group { margin-bottom: 16px; }
+        .info-label {
+            font-size: 12px;
+            color: #64748b;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .info-value {
+            font-size: 15px;
+            color: #1e293b;
+            font-weight: 500;
+        }
+        
+        /* Status */
+        .status-badge {
             display: inline-block;
+            padding: 8px 16px;
+            border-radius: 99px;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+        .status-pending { background: #fff7ed; color: #c2410c; border: 1px solid #ffedd5; }
+        .status-approved { background: #f0fdf4; color: #15803d; border: 1px solid #dcfce7; }
+        .status-rejected { background: #fef2f2; color: #b91c1c; border: 1px solid #fee2e2; }
+
+        /* Documents */
+        .doc-link {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #004aad;
+            font-weight: 500;
+            margin-bottom: 10px;
+            transition: all 0.2s;
+        }
+        .doc-link:hover {
+            background: #eff6ff;
+            border-color: #bfdbfe;
         }
 
-        .btn-approve, .btn-reject {
-            padding: 10px 18px;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            margin-right: 10px;
-            font-weight: bold;
+        /* Buttons */
+        .action-bar {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
         }
-        .btn-approve { background: green; }
-        .btn-reject { background: red; }
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+        .btn:active { transform: scale(0.98); }
+        
+        .btn-approve { background: #16a34a; color: white; flex: 1; }
+        .btn-reject { background: #dc2626; color: white; flex: 1; }
+        .btn-back { background: #fff; border: 1px solid #cbd5e1; color: #475569; padding: 8px 16px; }
 
-        .btn-back {
-            background: #444;
-            padding: 8px 14px;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-        }
     </style>
 </head>
-
 <body>
 
-<div class="container">
-    <h2>Loan Application Details</h2>
-    <hr>
+<div class="main-container">
 
-    <div class="details-box">
+    <div class="page-header">
+        <h1 class="page-title">Loan Details <span style="font-weight: 400; color: #94a3b8;">#<?= $loan_id ?></span></h1>
+        <a href="view_loans.php" class="btn-back">⬅ Back to List</a>
+    </div>
 
-        <div class="row"><span class="label">Borrower:</span>
-            <span class="value"><?= $loan['name'] ?></span>
-        </div>
-
-        <div class="row"><span class="label">Email:</span>
-            <span class="value"><?= $loan['email'] ?></span>
-        </div>
-
-        <div class="row"><span class="label">NIN:</span>
-            <span class="value"><?= $loan['nin'] ?></span>
-        </div>
-
-        <div class="row"><span class="label">BVN:</span>
-            <span class="value"><?= isset($loan['bvn']) ? $loan['bvn'] : 'N/A' ?></span>
-        </div>
-
-        <div class="row"><span class="label">Bike Model:</span>
-            <span class="value"><?= $loan['bike_model'] ?></span>
-        </div>
-
-        <div class="row"><span class="label">Loan Amount:</span>
-            <span class="value">₦<?= number_format($loan['amount']) ?></span>
-        </div>
-
-        <div class="row"><span class="label">Duration:</span>
-            <span class="value"><?= $loan['duration'] ?> months</span>
-        </div>
-
-        <div class="row"><span class="label">Purpose:</span>
-            <span class="value"><?= $loan['purpose'] ?></span>
-        </div>
-
-        <div class="row"><span class="label">Applied On:</span>
-            <span class="value"><?= $loan['date_applied'] ?></span>
-        </div>
-
-        <hr>
-        <h3>Guarantor Information</h3><br>
-
-        <?php
-        // Fetch Guarantor Info
-        $g_sql = "SELECT * FROM guarantor_information WHERE loan_application_id = '$loan_id'";
-        $g_result = $conn->query($g_sql);
-        $guarantor = $g_result->fetch_assoc();
+    <div class="details-grid">
         
-        if ($guarantor) {
-        ?>
-            <div class="row"><span class="label">Name:</span> <span class="value"><?= $guarantor['full_name'] ?> (<?= $guarantor['gender'] ?>)</span></div>
-            <div class="row"><span class="label">Phone:</span> <span class="value"><?= $guarantor['phone'] ?></span></div>
-            <div class="row"><span class="label">Address:</span> <span class="value"><?= $guarantor['address'] ?></span></div>
-            <div class="row"><span class="label">Relationship:</span> <span class="value"><?= $guarantor['relationship'] ?> (Known for <?= $guarantor['years_known'] ?>)</span></div>
-            <div class="row"><span class="label">Employment:</span> <span class="value"><?= $guarantor['occupation'] ?> at <?= $guarantor['employer'] ?></span></div>
-            <div class="row"><span class="label">Work Address:</span> <span class="value"><?= $guarantor['work_address'] ?></span></div>
-            <div class="row"><span class="label">ID Details:</span> <span class="value"><?= $guarantor['id_type'] ?> - <?= $guarantor['id_number'] ?></span></div>
-        <?php } else { ?>
-            <p style="color:red;">No Guarantor Information Found.</p>
-        <?php } ?>
+        <!-- LEFT COLUMN -->
+        <div class="left-col">
+            
+            <!-- BORROWER INFO -->
+            <div class="card">
+                <div class="card-header">👤 Borrower Profile</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div class="info-group">
+                        <div class="info-label">Full Name</div>
+                        <div class="info-value"><?= htmlspecialchars($loan['name']) ?></div>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Email Address</div>
+                        <div class="info-value"><?= htmlspecialchars($loan['email']) ?></div>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">NIN</div>
+                        <div class="info-value"><?= htmlspecialchars($loan['nin']) ?></div>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">BVN</div>
+                        <div class="info-value"><?= isset($loan['bvn']) ? htmlspecialchars($loan['bvn']) : 'N/A' ?></div>
+                    </div>
+                </div>
+            </div>
 
-        <hr>
-        <h3>Uploaded Documents</h3><br>
+            <!-- GUARANTOR INFO -->
+            <div class="card">
+                <div class="card-header">🛡️ Guarantor Information</div>
+                <?php
+                $g_sql = "SELECT * FROM guarantor_information WHERE loan_application_id = '$loan_id'";
+                $g_result = $conn->query($g_sql);
+                $guarantor = $g_result->fetch_assoc();
+                
+                if ($guarantor): ?>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="info-group">
+                            <div class="info-label">Guarantor Name</div>
+                            <div class="info-value"><?= htmlspecialchars($guarantor['full_name']) ?></div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Relationship</div>
+                            <div class="info-value"><?= htmlspecialchars($guarantor['relationship']) ?> (<?= $guarantor['years_known'] ?> years)</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Phone</div>
+                            <div class="info-value"><?= htmlspecialchars($guarantor['phone']) ?></div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">ID Type/Number</div>
+                            <div class="info-value"><?= htmlspecialchars($guarantor['id_type']) ?> - <?= htmlspecialchars($guarantor['id_number']) ?></div>
+                        </div>
+                        <div class="info-group" style="grid-column: span 2;">
+                            <div class="info-label">Address</div>
+                            <div class="info-value"><?= htmlspecialchars($guarantor['address']) ?></div>
+                        </div>
+                         <div class="info-group" style="grid-column: span 2;">
+                            <div class="info-label">Employment</div>
+                            <div class="info-value"><?= htmlspecialchars($guarantor['occupation']) ?> at <?= htmlspecialchars($guarantor['employer']) ?></div>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <p style="color: #94a3b8; font-style: italic;">No guarantor information recorded.</p>
+                <?php endif; ?>
+            </div>
 
-        <div class="row">
-            <span class="label">ID Card:</span>
-            <span class="value">
-                <?php if (!empty($loan['id_card'])) { ?>
-                    <a class="doc-link" href="../<?= $loan['id_card'] ?>" target="_blank">View ID Card</a>
-                <?php } else { echo "<span style='color:red'>Not uploaded</span>"; } ?>
-            </span>
         </div>
 
-        <div class="row">
-            <span class="label">Utility Bill:</span>
-            <span class="value">
-                <?php if (!empty($loan['utility_bill'])) { ?>
-                    <a class="doc-link" href="../<?= $loan['utility_bill'] ?>" target="_blank">View Utility Bill</a>
-                <?php } else { echo "<span style='color:red'>Not uploaded</span>"; } ?>
-            </span>
+        <!-- RIGHT COLUMN -->
+        <div class="right-col">
+            
+            <!-- LOAN SPECS -->
+            <div class="card">
+                <div class="card-header">🚲 Loan Specifications</div>
+                
+                <div class="info-group">
+                    <div class="info-label">Bike Model</div>
+                    <div class="info-value" style="font-size: 18px; color: #004aad;"><?= htmlspecialchars($loan['bike_model']) ?></div>
+                </div>
+
+                <div class="info-group">
+                    <div class="info-label">Amount Requested</div>
+                    <div class="info-value">₦<?= number_format($loan['amount']) ?></div>
+                </div>
+
+                <div class="info-group">
+                    <div class="info-label">Duration</div>
+                    <div class="info-value"><?= $loan['duration'] ?> Months</div>
+                </div>
+                
+                <div class="info-group">
+                    <div class="info-label">Purpose</div>
+                    <div class="info-value"><?= htmlspecialchars($loan['purpose']) ?></div>
+                </div>
+
+                <div class="info-group">
+                    <div class="info-label">Date Applied</div>
+                    <div class="info-value"><?= date("F j, Y", strtotime($loan['date_applied'])) ?></div>
+                </div>
+                
+                <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #f1f5f9;">
+                    <div class="info-label">Status</div>
+                    <?php 
+                    $s = $loan['status'];
+                    $cls = 'status-pending';
+                    if($s=='approved') $cls='status-approved';
+                    if($s=='rejected') $cls='status-rejected';
+                    ?>
+                    <span class="status-badge <?= $cls ?>"><?= strtoupper($s) ?></span>
+                </div>
+
+                <?php if ($loan['status'] === 'pending'): ?>
+                    <div class="action-bar">
+                        <a href="approve_loan.php?id=<?= $loan_id ?>" class="btn btn-approve" onclick="return confirm('Are you sure you want to approve this loan?')">Approve</a>
+                        <a href="reject_loan.php?id=<?= $loan_id ?>" class="btn btn-reject" onclick="return confirm('Are you sure you want to reject this loan?')">Reject</a>
+                    </div>
+                <?php endif; ?>
+            </div>
+
+            <!-- DOCUMENTS -->
+            <div class="card">
+                <div class="card-header">📂 Documents</div>
+                
+                <?php if (!empty($loan['id_card'])): ?>
+                    <a href="../<?= $loan['id_card'] ?>" target="_blank" class="doc-link">
+                        <span>📄 View ID Card</span>
+                    </a>
+                <?php else: ?>
+                    <div style="color: #94a3b8; padding: 10px;">ID Card missing</div>
+                <?php endif; ?>
+
+                <?php if (!empty($loan['utility_bill'])): ?>
+                    <a href="../<?= $loan['utility_bill'] ?>" target="_blank" class="doc-link">
+                        <span>📄 View Utility Bill</span>
+                    </a>
+                <?php else: ?>
+                    <div style="color: #94a3b8; padding: 10px;">Utility Bill missing</div>
+                <?php endif; ?>
+            </div>
+
         </div>
-
-
-        <hr>
-
-        <div class="row">
-            <span class="label">Status:</span>
-            <span class="value"><b><?= strtoupper($loan['status']) ?></b></span>
-        </div>
-
-        <br>
-
-        <?php if ($loan['status'] === 'pending') { ?>
-            <a href="approve_loan.php?id=<?= $loan_id ?>" class="btn-approve">Approve Loan</a>
-            <a href="reject_loan.php?id=<?= $loan_id ?>" class="btn-reject">Reject Loan</a>
-        <?php } else { ?>
-            <p style="color:green; font-weight:bold;">This loan has already been processed.</p>
-        <?php } ?>
-
-        <br><br>
-
-        <a href="view_loans.php" class="btn-back">⬅ Back</a>
 
     </div>
+
 </div>
 
 </body>

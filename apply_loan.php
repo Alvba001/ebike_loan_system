@@ -268,13 +268,13 @@ if (isset($_POST['apply'])) {
             </div>
 
             <div class="form-group">
-                <label>NIN Number</label>
-                <input type="text" name="nin" class="form-input" placeholder="Enter NIN Number" required maxlength="11" minlength="11">
+                <label>NIN</label>
+                <input type="text" name="nin" class="form-input" placeholder="Enter NIN" required maxlength="11" minlength="11">
             </div>
 
             <div class="form-group">
-                <label>BVN Number</label>
-                <input type="text" name="bvn" class="form-input" placeholder="Enter BVN Number" required maxlength="11" minlength="11">
+                <label>BVN</label>
+                <input type="text" name="bvn" class="form-input" placeholder="Enter BVN" required maxlength="11" minlength="11">
             </div>
 
             <div class="form-group">

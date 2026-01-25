@@ -70,7 +70,7 @@ if (isset($_POST['pay'])) {
             // Mark schedule as PAID
             $conn->query("
                 UPDATE repayment_schedule
-                SET status='paid', datepaid=CURDATE()
+                SET status='paid', date_paid=CURDATE()
                 WHERE schedule_id='$schedule_id' AND status='pending'
             ");
 

@@ -71,6 +71,9 @@ if (isset($_POST['register'])) {
             Already have an account?
             <a href="login.php" class="auth-link">Login here</a>
         </p>
+        <p class="auth-text" style="font-size: 0.9em; margin-top: 10px;">
+            By registering, you agree to our <a href="terms.php" class="auth-link">Terms and Conditions</a>
+        </p>
     </div>
 </div>
 

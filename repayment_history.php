@@ -25,7 +25,20 @@ if (!$loan) {
 }
 
 $loan_id     = $loan['loan_id'];
-$loan_amount = floatval($loan['amount']);
+$amount      = floatval($loan['amount']);
+$duration    = intval($loan['duration']);
+
+// Calculate Total Payable with Interest (Logic mirrors approve_loan.php)
+$interest_rate = 1.0; 
+if ($duration == 3) {
+    $interest_rate = 1.10; // 10% interest
+} elseif ($duration == 6) {
+    $interest_rate = 1.15; // 15% interest
+} elseif ($duration == 12) {
+    $interest_rate = 1.20; // 20% interest
+}
+
+$loan_amount = $amount * $interest_rate; // This is now the Total Payable Amount
 
 /* ================= FETCH REPAYMENTS ================= */
 $result = $conn->query("

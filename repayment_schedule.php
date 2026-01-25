@@ -10,8 +10,8 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'borrower') {
 
 $user_id = $_SESSION['user_id'];
 
-// Get user loan
-$loan = $conn->query("SELECT * FROM loan_applications WHERE user_id='$user_id' AND status='approved'")->fetch_assoc();
+// Get user loan (Ensure we get the latest approved loan)
+$loan = $conn->query("SELECT * FROM loan_applications WHERE user_id='$user_id' AND status='approved' ORDER BY loan_id DESC LIMIT 1")->fetch_assoc();
 
 if (!$loan) {
     echo "<script>alert('You have no approved loan.'); window.location='dashboard.php';</script>";
@@ -43,6 +43,7 @@ $schedule = $conn->query("SELECT * FROM repayment_schedule WHERE loan_id='$loan_
         <tr>
             <th>Due Date</th>
             <th>Amount (₦)</th>
+            <th>Date Paid</th>
             <th>Status</th>
         </tr>
     </thead>
@@ -52,6 +53,15 @@ $schedule = $conn->query("SELECT * FROM repayment_schedule WHERE loan_id='$loan_
         <tr>
             <td><?= $row['due_date'] ?></td>
             <td>₦<?= number_format($row['amount_due'], 2) ?></td>
+            <td>
+                <?php 
+                    if ($row['date_paid']) {
+                        echo $row['date_paid'];
+                    } else {
+                        echo '<span style="color: #999;">-</span>';
+                    }
+                ?>
+            </td>
             <td>
                 <?php if ($row['status'] == 'pending') { ?>
                     <span style="color: orange; font-weight: bold;">Pending</span>

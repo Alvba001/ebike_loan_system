@@ -226,6 +226,7 @@ $remaining = floatval($loan['amount']) - $paid;
                     <div class="btn-cta" style="background: #10b981; cursor: default;">Loan Fully Repaid</div>
                 <?php endif; ?>
 
+                <a href="repayment_schedule.php" class="btn-secondary-gray">View Schedule</a>
                 <a href="repayment_history.php" class="btn-secondary-gray">View History</a>
             </div>
         </div>
